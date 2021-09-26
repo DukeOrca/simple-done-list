@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">심플 던리스트</string>
+    <string name="allow">허용</string>
+    <string name="an_error_has_occurred">오류가 발생했습니다.</string>
+    <string name="appear_on_top">다른 앱 위에 표시</string>
+    <string name="cancel">취소</string>
+    <string name="close">닫기</string>
+    <string name="dark_mode">다크 모드</string>
+    <string name="delete">삭제</string>
+    <string name="delete_history">히스토리 삭제</string>
+    <string name="delete_the_history">히스토리를 삭제합니다.</string>
+    <string name="delete_the_things_done">한 일을 삭제합니다.</string>
+    <string name="delete_things_done">한 일 삭제</string>
+    <string name="deny">거부</string>
+    <string name="display">디스플레이</string>
+    <string name="display_after_unlocking">잠금 해제 후 표시</string>
+    <string name="done_list">던리스트</string>
+    <string name="drag_to_unlock">드래그해서 잠금 해제</string>
+    <string name="draw_unlock_pattern">잠금 해제 패턴을 그리세요.</string>
+    <string name="edit">수정</string>
+    <string name="enter_password_or_pin">비밀번호 또는 PIN을 입력하세요.</string>
+    <string name="font_size">글꼴 크기</string>
+    <string name="format_date">M월 d일 EEEE</string>
+    <string name="format_date2">M월 d일</string>
+    <string name="histories">히스토리</string>
+    <string name="lock_screen">잠금화면</string>
+    <string name="lock_setting">잠금 설정</string>
+    <string name="done_list_service_is_running">던리스트 서비스가 실행 중입니다.</string>
+    <string name="lock_type">잠금 방식</string>
+    <string name="no_histories">히스토리가 없습니다.</string>
+    <string name="request_app_permissions">앱 권한 요청</string>
+    <string name="save">저장</string>
+    <string name="settings">설정</string>
+    <string name="share_the_app">앱 공유하기</string>
+    <string name="show_on_lock_screen">잠금화면에 표시</string>
+    <string name="unlock_with_back_button">백 버튼으로 잠금해제</string>
+    <string name="version">버전</string>
+    <string name="write_review">리뷰 쓰기</string>
+
+    <string name="blind_screen_000">보안정책에 따라 홈 버튼으로 잠금 해제 할 수 없습니다.</string>
+    <string name="fragment_edit_done_dialog_000">오늘 한 일을 입력하세요. :)</string>
+    <string name="fragment_permission_rationale_dialog_000">앱을 정상적으로 사용하기 위해서는 다음 권한을 허용해야 합니다.</string>
+    <string name="notification_builder_000">다른 앱 위에 표시 권한을 허용하세요.</string>
+    <string name="review_000">소중한 리뷰 감사합니다.</string>
+</resources>

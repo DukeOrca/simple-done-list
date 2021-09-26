@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/doneListFragment">
+
+    <fragment
+        android:id="@+id/doneListFragment"
+        android:name="com.duke.orca.android.kotlin.simpledonelist.donelist.views.DoneListFragment"
+        android:label="DoneListFragment" >
+        <action
+            android:id="@+id/action_doneListFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_doneListFragment_to_historiesFragment"
+            app:destination="@id/historiesFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.duke.orca.android.kotlin.simpledonelist.settings.views.SettingsFragment"
+        android:label="SettingsFragment" />
+    <fragment
+        android:id="@+id/historiesFragment"
+        android:name="com.duke.orca.android.kotlin.simpledonelist.history.views.HistoriesFragment"
+        android:label="HistoriesFragment" />
+</navigation>

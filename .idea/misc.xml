@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/drawable/call_to_action_shape.xml" value="0.178125" />
+        <entry key="app/src/main/res/drawable/highlight.xml" value="0.26979166666666665" />
+        <entry key="app/src/main/res/drawable/ic_round_add_36.xml" value="0.26979166666666665" />
+        <entry key="app/src/main/res/drawable/ic_round_done_48.xml" value="0.10277777777777777" />
+        <entry key="app/src/main/res/drawable/ic_round_history_24.xml" value="0.178125" />
+        <entry key="app/src/main/res/drawable/outline_shape.xml" value="0.26927083333333335" />
+        <entry key="app/src/main/res/drawable/oval_border.xml" value="0.2101851851851852" />
+        <entry key="app/src/main/res/drawable/oval_stroke.xml" value="0.178125" />
+        <entry key="app/src/main/res/drawable/ripple_unlock.xml" value="0.21197916666666666" />
+        <entry key="app/src/main/res/drawable/rounded_corners.xml" value="0.14635416666666667" />
+        <entry key="app/src/main/res/drawable/rounded_corners_shape.xml" value="0.26927083333333335" />
+        <entry key="app/src/main/res/drawable/rounded_corners_stroke.xml" value="0.178125" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1503623188405797" />
+        <entry key="app/src/main/res/layout/ad.xml" value="0.13677536231884058" />
+        <entry key="app/src/main/res/layout/blind_screen.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/content.xml" value="0.13020833333333334" />
+        <entry key="app/src/main/res/layout/divider.xml" value="0.13020833333333334" />
+        <entry key="app/src/main/res/layout/done.xml" value="0.21413276231263384" />
+        <entry key="app/src/main/res/layout/done2.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/fragment_base_list_dialog.xml" value="0.13020833333333334" />
+        <entry key="app/src/main/res/layout/fragment_confirmation_dialog.xml" value="0.13020833333333334" />
+        <entry key="app/src/main/res/layout/fragment_done_list.xml" value="0.3074792243767313" />
+        <entry key="app/src/main/res/layout/fragment_edit_done_dialog.xml" value="0.24691358024691357" />
+        <entry key="app/src/main/res/layout/fragment_histories.xml" value="0.16077898550724637" />
+        <entry key="app/src/main/res/layout/fragment_history.xml" value="0.14605572472459524" />
+        <entry key="app/src/main/res/layout/fragment_lock_screen_settings.xml" value="0.13020833333333334" />
+        <entry key="app/src/main/res/layout/fragment_month.xml" value="0.12310030395136778" />
+        <entry key="app/src/main/res/layout/fragment_permission_rationale_dialog.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_preference.xml" value="0.2741228070175439" />
+        <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.13020833333333334" />
+        <entry key="app/src/main/res/layout/fragment_write_done_dialog.xml" value="0.11820652173913043" />
+        <entry key="app/src/main/res/layout/history.xml" value="0.45" />
+        <entry key="app/src/main/res/layout/multi_select_list_preference.xml" value="0.13020833333333334" />
+        <entry key="app/src/main/res/layout/native_ad.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/native_advanced.xml" value="0.271505376344086" />
+        <entry key="app/src/main/res/layout/native_advanced2.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/native_template.xml" value="0.13677536231884058" />
+        <entry key="app/src/main/res/layout/permission.xml" value="0.1490036231884058" />
+        <entry key="app/src/main/res/layout/preference.xml" value="0.13020833333333334" />
+        <entry key="app/src/main/res/layout/preference_category.xml" value="0.13020833333333334" />
+        <entry key="app/src/main/res/layout/sample.xml" value="0.2927536231884058" />
+        <entry key="app/src/main/res/layout/sample2.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/single_choice_item.xml" value="0.13020833333333334" />
+        <entry key="app/src/main/res/layout/space.xml" value="0.13020833333333334" />
+        <entry key="app/src/main/res/layout/switch_preference.xml" value="0.13020833333333334" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.10677083333333333" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
