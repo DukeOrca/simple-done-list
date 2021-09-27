@@ -14,9 +14,6 @@ interface HistoryDao {
     @Delete
     fun delete(julianDay: JulianDay): Completable
 
-    @Delete
-    suspend fun deleteList(list: List<JulianDay>)
-
     @Transaction
     @Query("SELECT * FROM julian_day ORDER BY value DESC")
     fun get(): Flow<List<History>>

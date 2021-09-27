@@ -34,6 +34,7 @@ class HistoryOptionsDialogFragment : SingleChoiceDialogFragment<String>() {
             history?.let {
                 onOptionsItemSelectedListener?.onOptionsItemSelected(this, item, it)
             } ?: let {
+                showErrorToast()
                 dismiss()
             }
         }

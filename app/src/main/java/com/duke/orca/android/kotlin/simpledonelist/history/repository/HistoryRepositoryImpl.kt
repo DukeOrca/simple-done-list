@@ -12,12 +12,8 @@ class HistoryRepositoryImpl @Inject constructor(private val datasource: HistoryD
         datasource.delete(history)
     }
 
-    override suspend fun deleteList(list: List<JulianDay>) {
-        datasource.deleteList(list)
-    }
-
-    override suspend fun deleteDone(done: Done) {
-        datasource.deleteDone(done)
+    override suspend fun delete(done: Done) {
+        datasource.delete(done)
     }
 
     override fun get(julianDay: JulianDay): Flow<List<Done>> {

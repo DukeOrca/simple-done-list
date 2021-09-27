@@ -22,7 +22,7 @@ class DoneListViewModel @Inject constructor(
     private val repository: DoneListRepository
 ) : ViewModel() {
     private val nativeAds = MutableLiveData<List<NativeAd>>()
-    val doneList = repository.doneList.asLiveData()
+    val doneList = repository.doneList.asLiveData(viewModelScope.coroutineContext)
     val adapterItems = MediatorLiveData<List<AdapterItem>>().apply {
         addSource(doneList) {
             value = combine(doneList, nativeAds)

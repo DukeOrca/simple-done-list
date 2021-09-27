@@ -19,11 +19,7 @@ class HistoryDatasourceImpl @Inject constructor(private val database: AppDatabas
             }
     }
 
-    override suspend fun deleteList(list: List<JulianDay>) {
-        database.historyDao().deleteList(list)
-    }
-
-    override suspend fun deleteDone(done: Done) {
+    override suspend fun delete(done: Done) {
         database.doneDao().delete(done)
     }
 

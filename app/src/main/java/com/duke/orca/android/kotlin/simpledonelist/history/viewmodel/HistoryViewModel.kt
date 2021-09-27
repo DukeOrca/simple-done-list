@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HistoryViewModel @Inject constructor(private val repository: HistoryRepository) : ViewModel() {
-    val histories = repository.histories.asLiveData()
+    val histories = repository.histories.asLiveData(viewModelScope.coroutineContext)
 
     fun getDoneList(julianDay: JulianDay) = repository.get(julianDay)
 
@@ -24,15 +24,9 @@ class HistoryViewModel @Inject constructor(private val repository: HistoryReposi
         }
     }
 
-    fun deleteList(list: List<History>) {
+    fun delete(done: Done) {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.deleteList(list.map { it.julianDay })
-        }
-    }
-
-    fun deleteDone(done: Done) {
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.deleteDone(done)
+            repository.delete(done)
         }
     }
 }

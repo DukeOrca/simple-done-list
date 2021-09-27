@@ -7,9 +7,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface HistoryRepository {
     suspend fun delete(history: History)
-    suspend fun deleteList(list: List<JulianDay>)
-
-    suspend fun deleteDone(done: Done)
+    suspend fun delete(done: Done)
 
     fun get(julianDay: JulianDay): Flow<List<Done>>
 

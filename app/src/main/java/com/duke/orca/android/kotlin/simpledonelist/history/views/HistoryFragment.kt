@@ -125,7 +125,7 @@ class HistoryFragment : BaseNavigationFragment<FragmentHistoryBinding>(),
     }
 
     override fun onDeleteButtonClick(dialogFragment: DialogFragment, done: Done) {
-        viewModel.deleteDone(done)
+        viewModel.delete(done)
         dialogFragment.dismiss()
     }
 
@@ -149,7 +149,7 @@ class HistoryFragment : BaseNavigationFragment<FragmentHistoryBinding>(),
     }
 
     override fun onPositiveButtonClick(dialogFragment: DialogFragment, done: Done) {
-        viewModel.deleteDone(done)
+        viewModel.delete(done)
         dialogFragment.dismiss()
     }
 

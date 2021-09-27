@@ -42,7 +42,6 @@ class HistoriesFragment : BaseNavigationFragment<FragmentHistoriesBinding>(),
     private val viewModel by viewModels<HistoryViewModel>()
     private val historyAdapter = HistoryAdapter()
     private val options by lazy { arrayOf(getString(R.string.delete)) }
-    private val today = Calendar.getInstance().get(Calendar.JULIAN_DAY)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -76,14 +75,14 @@ class HistoriesFragment : BaseNavigationFragment<FragmentHistoriesBinding>(),
 
             with(list.filter {
                 it.doneList.isNotEmpty()
-            }.filterNot {
-                it.julianDay.value == today
             }) {
                 historyAdapter.submitList(this)
             }
 
             with(list.filterNot { it.doneList.isNotEmpty() }) {
-                viewModel.deleteList(this)
+                forEach {
+                    viewModel.delete(it)
+                }
             }
         })
     }
