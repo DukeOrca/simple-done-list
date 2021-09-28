@@ -18,6 +18,7 @@
         android:theme="@style/Theme.SimpleDoneList">
         <activity
             android:name=".main.view.MainActivity"
+            android:excludeFromRecents="true"
             android:exported="true"
             android:windowSoftInputMode="adjustNothing">
             <intent-filter>

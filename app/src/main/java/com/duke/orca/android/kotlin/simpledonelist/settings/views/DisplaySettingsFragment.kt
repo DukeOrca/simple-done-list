@@ -9,7 +9,8 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.lifecycleScope
 import com.duke.orca.android.kotlin.simpledonelist.R
-import com.duke.orca.android.kotlin.simpledonelist.application.DataStore
+import com.duke.orca.android.kotlin.simpledonelist.application.Duration
+import com.duke.orca.android.kotlin.simpledonelist.datastore.DataStore
 import com.duke.orca.android.kotlin.simpledonelist.base.LinearLayoutManagerWrapper
 import com.duke.orca.android.kotlin.simpledonelist.base.views.PreferenceFragment
 import com.duke.orca.android.kotlin.simpledonelist.settings.PreferencesKeys
@@ -57,7 +58,7 @@ class DisplaySettingsFragment : PreferenceFragment(), FontSizeChoiceDialogFragme
 
                         withContext(Dispatchers.IO) {
                             DataStore.Display.putDarkMode(requireContext(), isChecked)
-                            delay(300L)
+                            delay(Duration.MEDIUM)
                         }
 
                         AppCompatDelegate.setDefaultNightMode(darkMode)

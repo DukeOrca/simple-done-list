@@ -8,13 +8,12 @@ import androidx.core.content.ContextCompat
 import androidx.datastore.preferences.core.edit
 import androidx.lifecycle.lifecycleScope
 import com.duke.orca.android.kotlin.simpledonelist.R
-import com.duke.orca.android.kotlin.simpledonelist.application.DataStore
+import com.duke.orca.android.kotlin.simpledonelist.datastore.DataStore
 import com.duke.orca.android.kotlin.simpledonelist.base.LinearLayoutManagerWrapper
 import com.duke.orca.android.kotlin.simpledonelist.base.views.PreferenceFragment
 import com.duke.orca.android.kotlin.simpledonelist.settings.PreferencesKeys
 import com.duke.orca.android.kotlin.simpledonelist.settings.adapter.AdapterItem
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.collect
 
 class LockScreenSettingsFragment : PreferenceFragment() {
     private object Id {

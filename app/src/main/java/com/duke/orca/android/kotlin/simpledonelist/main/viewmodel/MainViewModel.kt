@@ -2,7 +2,7 @@ package com.duke.orca.android.kotlin.simpledonelist.main.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.*
-import com.duke.orca.android.kotlin.simpledonelist.application.dataStore
+import com.duke.orca.android.kotlin.simpledonelist.datastore.dataStore
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
     val settings = application.dataStore.data.asLiveData(viewModelScope.coroutineContext)

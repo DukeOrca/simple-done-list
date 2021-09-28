@@ -3,6 +3,7 @@ package com.duke.orca.android.kotlin.simpledonelist.donelist.viewmodels
 import android.content.Context
 import androidx.lifecycle.*
 import com.duke.orca.android.kotlin.simpledonelist.admob.AdLoader
+import com.duke.orca.android.kotlin.simpledonelist.application.Duration
 import com.duke.orca.android.kotlin.simpledonelist.donelist.adapter.AdapterItem
 import com.duke.orca.android.kotlin.simpledonelist.donelist.model.Done
 import com.duke.orca.android.kotlin.simpledonelist.donelist.repository.DoneListRepository
@@ -13,6 +14,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.util.concurrent.Flow
 import java.util.concurrent.atomic.AtomicBoolean
 import javax.inject.Inject
 
@@ -22,7 +24,8 @@ class DoneListViewModel @Inject constructor(
     private val repository: DoneListRepository
 ) : ViewModel() {
     private val nativeAds = MutableLiveData<List<NativeAd>>()
-    val doneList = repository.doneList.asLiveData(viewModelScope.coroutineContext)
+    private val doneList = MutableLiveData<List<Done>>()
+
     val adapterItems = MediatorLiveData<List<AdapterItem>>().apply {
         addSource(doneList) {
             value = combine(doneList, nativeAds)
@@ -35,9 +38,17 @@ class DoneListViewModel @Inject constructor(
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
-            delay(600L)
+            delay(Duration.LONG)
             loadNativeAd(applicationContext)
         }
+    }
+
+    fun getDoneList(julianDay: Int): LiveData<List<Done>> {
+        return repository.getDoneList(julianDay).asLiveData(viewModelScope.coroutineContext)
+    }
+
+    fun setDoneList(list: List<Done>) {
+        doneList.value = list
     }
 
     fun insert(done: Done) {
@@ -58,7 +69,7 @@ class DoneListViewModel @Inject constructor(
         }
     }
 
-    fun loadNativeAd(context: Context) {
+    private fun loadNativeAd(context: Context) {
         AdLoader.loadNativeAd(context) {
             addNativeAd(it)
         }

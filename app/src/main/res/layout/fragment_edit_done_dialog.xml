@@ -68,6 +68,7 @@
             android:importantForAutofill="no"
             android:maxHeight="@dimen/height_160dp"
             android:minHeight="@dimen/height_80dp"
+            android:scrollbars="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/text_clock" />

@@ -3,10 +3,10 @@
     <style name="Theme.SimpleDoneList" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_400</item>
-        <item name="colorPrimaryVariant">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_400</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/cyan_300</item>
+        <item name="colorSecondary">@color/cyan_400</item>
         <item name="colorSecondaryVariant">@color/cyan_400</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
@@ -63,5 +63,22 @@
     <style name="WindowAnimation.DialogFragment">
         <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
         <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+
+    <style name="ToolTipStyle" parent="ToolTipLayoutDefaultStyle">
+        <item name="android:textAppearance">@style/ToolTipTextStyle</item>
+        <item name="ttlm_backgroundColor">@color/purple_400</item>
+        <item name="ttlm_cornerRadius">8dp</item>
+        <item name="ttlm_overlayStyle">@style/ToolTipOverlayStyle</item>
+    </style>
+
+    <style name="ToolTipTextStyle">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/text_size_14dp</item>
+    </style>
+
+    <style name="ToolTipOverlayStyle" parent="ToolTipOverlayDefaultStyle">
+        <item name="android:color">@color/purple_400</item>
+        <item name="android:alpha">0.5</item>
     </style>
 </resources>

@@ -16,37 +16,35 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.SmoothScroller
 import com.duke.orca.android.kotlin.simpledonelist.R
-import com.duke.orca.android.kotlin.simpledonelist.admob.AdLoader
 import com.duke.orca.android.kotlin.simpledonelist.application.*
 import com.duke.orca.android.kotlin.simpledonelist.application.annotation.MainFragment
 import com.duke.orca.android.kotlin.simpledonelist.base.LinearLayoutManagerWrapper
 import com.duke.orca.android.kotlin.simpledonelist.base.views.BaseFragment
 import com.duke.orca.android.kotlin.simpledonelist.camera.Camera
 import com.duke.orca.android.kotlin.simpledonelist.databinding.FragmentDoneListBinding
+import com.duke.orca.android.kotlin.simpledonelist.datastore.DataStore
 import com.duke.orca.android.kotlin.simpledonelist.devicecredential.DeviceCredential
 import com.duke.orca.android.kotlin.simpledonelist.devicecredential.DeviceCredential.confirmDeviceCredential
 import com.duke.orca.android.kotlin.simpledonelist.devicecredential.annotation.RequireDeviceCredential
 import com.duke.orca.android.kotlin.simpledonelist.donelist.adapter.DoneListAdapter
 import com.duke.orca.android.kotlin.simpledonelist.donelist.adapter.itemdecoration.ItemDecoration
 import com.duke.orca.android.kotlin.simpledonelist.donelist.model.Done
+import com.duke.orca.android.kotlin.simpledonelist.donelist.tooltip.Tooltip
 import com.duke.orca.android.kotlin.simpledonelist.donelist.viewmodels.DoneListViewModel
 import com.duke.orca.android.kotlin.simpledonelist.donelist.views.DoneListFragment.Unlock.endRange
 import com.duke.orca.android.kotlin.simpledonelist.history.models.JulianDay
 import com.duke.orca.android.kotlin.simpledonelist.main.viewmodel.MainViewModel
 import com.duke.orca.android.kotlin.simpledonelist.settings.PreferencesKeys
 import dagger.hilt.android.AndroidEntryPoint
-import jp.wasabeef.recyclerview.animators.FadeInDownAnimator
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.math.abs
 import kotlin.math.pow
 import kotlin.math.sqrt
-import androidx.recyclerview.widget.LinearSmoothScroller
-import androidx.recyclerview.widget.RecyclerView.SmoothScroller
-import androidx.room.ColumnInfo
-
 
 @AndroidEntryPoint
 @MainFragment
@@ -73,7 +71,7 @@ class DoneListFragment : BaseFragment<FragmentDoneListBinding>(),
     private val viewModel by viewModels<DoneListViewModel>()
     private val cameraApplicationLaunchIntent by lazy { Camera.getLaunchIntent(requireContext()) }
     private val doneListAdapter = DoneListAdapter()
-    private val duration = 300L
+    private val duration = Duration.MEDIUM
     private val onBackPressedCallback = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
             with(DataStore.getBoolean(requireContext(), PreferencesKeys.LockScreen.unlockWithBackKey, false)) {
@@ -87,6 +85,13 @@ class DoneListFragment : BaseFragment<FragmentDoneListBinding>(),
     }
 
     private val options by lazy { arrayOf(getString(R.string.edit), getString(R.string.delete)) }
+    private val  smoothScroller: SmoothScroller by lazy {
+        object : LinearSmoothScroller(requireContext()) {
+            override fun getVerticalSnapPreference(): Int {
+                return SNAP_TO_START
+            }
+        }
+    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -101,6 +106,11 @@ class DoneListFragment : BaseFragment<FragmentDoneListBinding>(),
         super.onCreateView(inflater, container, savedInstanceState)
         observe()
         bind()
+
+        if (DataStore.getIsFirstTime(requireContext())) {
+            showTooltips()
+            DataStore.putFirstTime(requireContext(), false)
+        }
 
         activityViewModel.setBannerAdViewVisibility(View.VISIBLE)
 
@@ -126,6 +136,10 @@ class DoneListFragment : BaseFragment<FragmentDoneListBinding>(),
             }
         })
 
+        viewModel.getDoneList(Calendar.getInstance().get(Calendar.JULIAN_DAY)).observe(viewLifecycleOwner, {
+            viewModel.setDoneList(it)
+        })
+
         viewModel.adapterItems.observe(viewLifecycleOwner, {
             doneListAdapter.submitList(it)
         })
@@ -137,10 +151,14 @@ class DoneListFragment : BaseFragment<FragmentDoneListBinding>(),
         doneListAdapter.setIsTextColorWhite(true)
         doneListAdapter.setOnItemClickListener(this)
         doneListAdapter.setOnItemLongClickListener(this)
+        doneListAdapter.registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
+            override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
+                viewBinding.recyclerView.scrollToPosition(positionStart)
+            }
+        })
 
         viewBinding.imageViewHistory.setOnClickListener {
             lifecycleScope.launch {
-                delay(150L)
                 findNavController().navigate(DoneListFragmentDirections.actionDoneListFragmentToHistoriesFragment())
             }
         }
@@ -148,7 +166,7 @@ class DoneListFragment : BaseFragment<FragmentDoneListBinding>(),
         cameraApplicationLaunchIntent?.let { intent ->
             viewBinding.imageViewCamera.setOnClickListener {
                 lifecycleScope.launch {
-                    delay(150L)
+                    delay(Duration.SHORT)
                     startActivity(intent)
                 }
             }
@@ -158,23 +176,22 @@ class DoneListFragment : BaseFragment<FragmentDoneListBinding>(),
 
         viewBinding.imageViewSettings.setOnClickListener {
             lifecycleScope.launch {
-                delay(150L)
                 findNavController().navigate(DoneListFragmentDirections.actionDoneListFragmentToSettingsFragment())
             }
         }
 
         viewBinding.imageViewAdd.setOnClickListener {
-            EditDoneDialogFragment.newInstance().also {
+            EditDoneDialogFragment.newInstance(EditDoneDialogFragment.Mode.INSERT).also {
                 it.show(childFragmentManager, it.tag)
             }
         }
 
         viewBinding.recyclerView.apply {
             adapter = doneListAdapter
-            itemAnimator = FadeInDownAnimator()
+            isNestedScrollingEnabled = false
             layoutManager = LinearLayoutManagerWrapper(requireContext())
-            setHasFixedSize(true)
             addItemDecoration(ItemDecoration(resources.getDimensionPixelSize(R.dimen.margin_1dp)))
+            setHasFixedSize(true)
         }
 
         viewBinding.linearLayoutUnlock.setOnTouchListener { _, event ->
@@ -187,7 +204,7 @@ class DoneListFragment : BaseFragment<FragmentDoneListBinding>(),
                     viewBinding.frameLayoutUnlock.showRipple()
 
                     val distance = sqrt((Unlock.x - event.x).pow(2) + (Unlock.y - event.y).pow(2))
-                    var scale = abs(endRange - distance * 0.5F) / endRange
+                    var scale = abs(endRange - distance * 0.45F) / endRange
 
                     when {
                         scale >= 1.0F -> scale = 1.0F
@@ -256,8 +273,24 @@ class DoneListFragment : BaseFragment<FragmentDoneListBinding>(),
         }
     }
 
+    private fun showTooltips() {
+        viewBinding.imageViewAdd.post {
+            Tooltip.showTooltip(
+                viewBinding.imageViewAdd,
+                getString(R.string.tooltip_000),
+                it.sephiroth.android.library.xtooltip.Tooltip.Gravity.BOTTOM
+            ) {
+                Tooltip.showTooltip(
+                    viewBinding.imageViewHistory,
+                    getString(R.string.tooltip_001),
+                    it.sephiroth.android.library.xtooltip.Tooltip.Gravity.BOTTOM
+                )
+            }
+        }
+    }
+
     override fun onItemClick(item: Done) {
-        EditDoneDialogFragment.newInstance(item).also {
+        EditDoneDialogFragment.newInstance(EditDoneDialogFragment.Mode.EDIT, item).also {
             it.show(childFragmentManager, it.tag)
         }
     }
@@ -277,19 +310,14 @@ class DoneListFragment : BaseFragment<FragmentDoneListBinding>(),
     override fun onSaveButtonClick(dialogFragment: DialogFragment, done: Done) {
         viewModel.insert(done)
         viewModel.insertJulianDay(JulianDay(done.julianDay))
-        viewBinding.recyclerView.layoutManager?.scrollToPosition(0)
-
-        lifecycleScope.launch {
-            delay(150)
-            dialogFragment.dismiss()
-        }
+        dialogFragment.dismiss()
     }
 
     override fun onOptionsItemSelected(dialogFragment: DialogFragment, option: String, done: Done) {
         when(option) {
             options[0] -> {
                 dialogFragment.dismiss()
-                EditDoneDialogFragment.newInstance(done, showSoftKeyboard = true).also {
+                EditDoneDialogFragment.newInstance(EditDoneDialogFragment.Mode.EDIT, done, showSoftKeyboard = true).also {
                     it.show(childFragmentManager, it.tag)
                 }
             }

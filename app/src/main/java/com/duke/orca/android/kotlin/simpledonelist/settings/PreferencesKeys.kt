@@ -6,6 +6,9 @@ import com.duke.orca.android.kotlin.simpledonelist.application.Application
 
 object PreferencesKeys {
     private const val PACKAGE_NAME = "${Application.PACKAGE_NAME}.settings"
+    private const val OBJECT_NAME = "PreferencesKeys"
+
+    val isFirstTime = booleanPreferencesKey("$PACKAGE_NAME.$OBJECT_NAME.isFirstTime")
 
     object Display {
         private const val OBJECT_NAME = "Display"

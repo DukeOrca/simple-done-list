@@ -24,7 +24,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_round_done_24"
-            app:tint="@color/cyan_300"
+            app:tint="@color/cyan_400"
             tools:ignore="ContentDescription" />
 
         <TextView
@@ -48,7 +48,9 @@
             android:layout_marginStart="@dimen/margin_16dp"
             android:layout_marginTop="@dimen/margin_8dp"
             android:layout_marginBottom="@dimen/margin_12dp"
+            android:ellipsize="end"
             android:maxHeight="@dimen/height_64dp"
+            android:maxLines="3"
             android:textColor="@color/text"
             android:textSize="@dimen/text_size_16dp"
             app:layout_constraintBottom_toBottomOf="parent"

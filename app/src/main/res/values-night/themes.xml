@@ -2,12 +2,12 @@
     <!-- Base application theme. -->
     <style name="Theme.SimpleDoneList" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_300</item>
-        <item name="colorPrimaryVariant">@color/purple_500</item>
+        <item name="colorPrimary">@color/purple_400</item>
+        <item name="colorPrimaryVariant">@color/purple_400</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/cyan_300</item>
-        <item name="colorSecondaryVariant">@color/cyan_300</item>
+        <item name="colorSecondary">@color/cyan_400</item>
+        <item name="colorSecondaryVariant">@color/cyan_400</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:navigationBarColor">@color/navigation_bar</item>

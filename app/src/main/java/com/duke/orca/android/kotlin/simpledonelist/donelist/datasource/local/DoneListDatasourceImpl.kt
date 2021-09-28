@@ -1,13 +1,15 @@
 package com.duke.orca.android.kotlin.simpledonelist.donelist.datasource.local
 
-import android.icu.util.Calendar
 import com.duke.orca.android.kotlin.simpledonelist.donelist.model.Done
 import com.duke.orca.android.kotlin.simpledonelist.history.models.JulianDay
 import com.duke.orca.android.kotlin.simpledonelist.persistence.database.AppDatabase
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class DoneListDatasourceImpl @Inject constructor(private val database: AppDatabase) : DoneListDatasource {
-    private val julianDay = Calendar.getInstance().get(Calendar.JULIAN_DAY)
+    override fun getDoneList(julianDay: Int): Flow<List<Done>> {
+        return database.doneDao().get(julianDay)
+    }
 
     override suspend fun insert(done: Done) {
         database.doneDao().insert(done)
@@ -20,6 +22,4 @@ class DoneListDatasourceImpl @Inject constructor(private val database: AppDataba
     override suspend fun insertJulianDay(julianDay: JulianDay) {
         database.historyDao().insert(julianDay)
     }
-
-    override val doneList = database.doneDao().get(julianDay)
 }

@@ -12,6 +12,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.duke.orca.android.kotlin.simpledonelist.R
+import com.duke.orca.android.kotlin.simpledonelist.application.Duration
 import com.duke.orca.android.kotlin.simpledonelist.application.fadeIn
 import com.duke.orca.android.kotlin.simpledonelist.application.fadeOut
 import com.duke.orca.android.kotlin.simpledonelist.application.show
@@ -131,9 +132,9 @@ class MainActivity : AppCompatActivity(),
                         return
                     }
 
-                    handler?.postDelayed(this, 600L)
+                    handler?.postDelayed(this, Duration.LONG)
                 }
-            }, 600L)
+            }, Duration.LONG)
         }
     }
 

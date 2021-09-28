@@ -115,7 +115,6 @@ class SettingsFragment : PreferenceFragment() {
 
     private fun addFragment(fragment: Fragment) {
         lifecycleScope.launch {
-            delay(150)
             childFragmentManager.beginTransaction()
                 .setCustomAnimations(
                     R.anim.slide_in_right,

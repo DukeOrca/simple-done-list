@@ -8,7 +8,7 @@ import android.content.IntentFilter
 import android.os.IBinder
 import android.provider.Settings
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
-import com.duke.orca.android.kotlin.simpledonelist.application.DataStore
+import com.duke.orca.android.kotlin.simpledonelist.datastore.DataStore
 import com.duke.orca.android.kotlin.simpledonelist.application.Application
 import com.duke.orca.android.kotlin.simpledonelist.lockscreen.blindscreen.BlindScreenPresenter
 import com.duke.orca.android.kotlin.simpledonelist.main.view.MainActivity

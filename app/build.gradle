@@ -78,11 +78,11 @@ dependencies {
     implementation 'com.google.android.gms:play-services-ads:20.4.0'
 
     implementation 'com.jakewharton.timber:timber:4.7.1'
-
     implementation 'com.karumi:dexter:6.2.2'
 
     implementation 'io.reactivex.rxjava3:rxjava:3.0.0'
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
 
+    implementation 'it.sephiroth.android.library.targettooltip:target-tooltip-library:2.0.3'
     implementation 'jp.wasabeef:recyclerview-animators:4.0.2'
 }

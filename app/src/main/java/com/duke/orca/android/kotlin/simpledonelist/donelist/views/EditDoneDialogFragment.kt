@@ -25,8 +25,10 @@ class EditDoneDialogFragment : BaseDialogFragment<FragmentEditDoneDialogBinding>
         return FragmentEditDoneDialogBinding.inflate(inflater, container, false)
     }
 
-    private enum class Mode {
-        EDIT, INSERT, READ
+    object Mode {
+        const val EDIT = 0
+        const val INSERT = 1
+        const val READ = 2
     }
 
     private val viewModel by viewModels<EditDoneDialogViewModel>()
@@ -34,7 +36,7 @@ class EditDoneDialogFragment : BaseDialogFragment<FragmentEditDoneDialogBinding>
     private val showSoftKeyboard by lazy { arguments?.getBoolean(Key.SHOW_SOFT_KEYBOARD) ?: false }
     private var content = BLANK
     private var done: Done? = null
-    private var mode = Mode.INSERT
+    private val mode by lazy { arguments?.getInt(Key.MODE) ?: Mode.INSERT }
     private var onButtonClickListener: OnButtonClickListener? = null
 
     private val textWatcher = object : TextWatcher {
@@ -82,18 +84,12 @@ class EditDoneDialogFragment : BaseDialogFragment<FragmentEditDoneDialogBinding>
 
     private fun initData() {
         arguments?.getParcelable<Done>(Key.DONE)?.let {
-            mode = Mode.EDIT
             viewModel.existingContent = it.content
             content = it.content
             viewModel.setContent(content)
             viewModel.setDone(it)
         } ?: let {
-            mode = Mode.INSERT
             viewModel.setContent(BLANK)
-        }
-
-        if (arguments?.getBoolean(Key.IS_READ_MODE) == true) {
-            mode = Mode.READ
         }
     }
 
@@ -209,7 +205,7 @@ class EditDoneDialogFragment : BaseDialogFragment<FragmentEditDoneDialogBinding>
                         julianDay = viewModel.getJulianDay(),
                         writtenTime = viewModel.getWrittenTime()
                     )
-                    Mode.READ -> throw IllegalStateException()
+                    else -> throw IllegalStateException()
                 }
             )
         }
@@ -235,21 +231,21 @@ class EditDoneDialogFragment : BaseDialogFragment<FragmentEditDoneDialogBinding>
         private object Key {
             const val DONE = "$PACKAGE_NAME.DONE"
             const val IS_EDITABLE = "$PACKAGE_NAME.IS_EDITABLE"
-            const val IS_READ_MODE = "$PACKAGE_NAME.IS_READ_MODE"
+            const val MODE = "$PACKAGE_NAME.MODE"
             const val SHOW_SOFT_KEYBOARD = "$PACKAGE_NAME.SHOW_SOFT_KEYBOARD"
         }
 
         fun newInstance(
+            mode: Int,
             done: Done? = null,
             isEditable: Boolean = true,
-            isReadMode: Boolean = false,
             showSoftKeyboard: Boolean = false
         ): EditDoneDialogFragment {
             return EditDoneDialogFragment().apply {
                 arguments = bundleOf(
+                    Key.MODE to mode,
                     Key.DONE to done,
                     Key.IS_EDITABLE to isEditable,
-                    Key.IS_READ_MODE to isReadMode,
                     Key.SHOW_SOFT_KEYBOARD to showSoftKeyboard
                 )
             }

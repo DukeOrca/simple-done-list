@@ -3,16 +3,11 @@
     <!-- Text legibility
          https://material.io/design/color/text-legibility.html#color-theme-creation -->
 
+    <color name="baby_powder">#FEFEFA</color>
+
     <color name="black">#FF000000</color>
     <color name="dark_grey">#121212</color>
     <color name="white">#FFFFFFFF</color>
-
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="yellow_A_200">#FFFF00</color>
-
-    <color name="baby_powder">#FEFEFA</color>
 
     <color name="background">@color/white</color>
     <color name="background2">@color/baby_powder</color>
@@ -33,8 +28,7 @@
 
     <color name="card_background">#99121212</color>
 
-    <color name="purple_300">#ba68c8</color>
-    <color name="cyan_300">#26c6da</color>
+    <color name="yellow_A_200">#FFFF00</color>
 
     <color name="red_400">#ef5350</color>
     <color name="pink_400">#ec407a</color>
@@ -53,10 +47,8 @@
     <color name="orange_400">#ffa726</color>
     <color name="deep_orange_400">#ff7043</color>
 
-    <color name="purple_600">#8e24aa</color>
-
     <color name="divider">#1F000000</color>
-    <color name="icon">@color/high_emphasis</color>
+    <color name="icon">@color/medium_emphasis</color>
     <color name="navigation_bar">#40000000</color>
     <color name="navigation_bar2">#D6D6D6</color>
     <color name="shadow">@color/dark_grey</color>

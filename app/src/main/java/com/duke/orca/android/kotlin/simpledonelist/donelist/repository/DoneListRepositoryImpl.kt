@@ -7,6 +7,9 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class DoneListRepositoryImpl @Inject constructor(private val datasource: DoneListDatasource) : DoneListRepository {
+    override fun getDoneList(julianDay: Int): Flow<List<Done>> {
+        return datasource.getDoneList(julianDay)
+    }
     override suspend fun insert(done: Done) {
         datasource.insert(done)
     }
@@ -18,6 +21,4 @@ class DoneListRepositoryImpl @Inject constructor(private val datasource: DoneLis
     override suspend fun insertJulianDay(julianDay: JulianDay) {
         datasource.insertJulianDay(julianDay)
     }
-
-    override val doneList: Flow<List<Done>> = datasource.doneList
 }

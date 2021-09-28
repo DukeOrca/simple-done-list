@@ -112,7 +112,7 @@ class HistoryFragment : BaseNavigationFragment<FragmentHistoryBinding>(),
     }
 
     override fun onItemClick(item: Done) {
-        EditDoneDialogFragment.newInstance(item, false, isReadMode = true).also {
+        EditDoneDialogFragment.newInstance(EditDoneDialogFragment.Mode.READ, item, false).also {
             it.show(childFragmentManager, it.tag)
         }
     }

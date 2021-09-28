@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import androidx.appcompat.app.AppCompatDelegate
 import com.duke.orca.android.kotlin.simpledonelist.BuildConfig
+import com.duke.orca.android.kotlin.simpledonelist.datastore.DataStore
 import com.google.android.gms.ads.MobileAds
 import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber

@@ -141,6 +141,7 @@
             android:id="@+id/image_view_add"
             android:layout_width="@dimen/width_48dp"
             android:layout_height="@dimen/height_48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
             app:srcCompat="@drawable/ic_round_add_48"
             app:tint="@android:color/white"
             tools:ignore="ContentDescription" />
@@ -183,6 +184,13 @@
                 android:layout_marginStart="@dimen/margin_16dp" />
 
         </FrameLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_1dp"
+            android:layout_marginEnd="@dimen/margin_32dp"
+            android:layout_marginStart="@dimen/margin_32dp"
+            android:background="#61FFFFFF" />
 
     </LinearLayout>
 

@@ -1,4 +1,4 @@
-package com.duke.orca.android.kotlin.simpledonelist.application
+package com.duke.orca.android.kotlin.simpledonelist.datastore
 
 import android.content.Context
 import android.content.res.Configuration
@@ -7,6 +7,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.preferencesDataStore
+import com.duke.orca.android.kotlin.simpledonelist.application.Application
 import com.duke.orca.android.kotlin.simpledonelist.settings.PreferencesKeys
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
@@ -25,6 +26,16 @@ object DataStore {
         context.dataStore.data.map {
             it[key] ?: defValue
         }.first()
+    }
+
+    fun getIsFirstTime(context: Context): Boolean {
+        return getBoolean(context, PreferencesKeys.isFirstTime, true)
+    }
+
+    fun putFirstTime(context: Context, isFirstTime: Boolean) = runBlocking {
+        context.dataStore.edit {
+            it[PreferencesKeys.isFirstTime] = isFirstTime
+        }
     }
 
     object Display {
