@@ -287,7 +287,9 @@ class DoneListFragment : BaseFragment<FragmentDoneListBinding>(),
                         viewBinding.imageViewHistory,
                         getString(R.string.tooltip_001),
                         it.sephiroth.android.library.xtooltip.Tooltip.Gravity.BOTTOM
-                    )
+                    ) {
+                        DataStore.putFirstTime(requireContext(), false)
+                    }
                 }
             }
         }
