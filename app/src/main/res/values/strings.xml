@@ -40,7 +40,7 @@
     <string name="version">Version</string>
     <string name="write_review">Write review</string>
 
-    <string name="blind_screen_000">Unlocking with the home button is not allowed as per security policy.</string>
+    <string name="blind_screen_000">Unable to unlock with home button due to security policy.</string>
     <string name="fragment_edit_done_dialog_000">Write down what you did today. :)</string>
     <string name="fragment_permission_rationale_dialog_000">To use the app normally, you must allow the following permissions.</string>
     <string name="notification_builder_000">Please allow appear on top permission.</string>

@@ -16,10 +16,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SimpleDoneList">
+
         <activity
             android:name=".main.view.MainActivity"
             android:excludeFromRecents="true"
             android:exported="true"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustNothing">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

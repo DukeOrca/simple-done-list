@@ -85,13 +85,15 @@ class DoneListFragment : BaseFragment<FragmentDoneListBinding>(),
     }
 
     private val options by lazy { arrayOf(getString(R.string.edit), getString(R.string.delete)) }
-    private val  smoothScroller: SmoothScroller by lazy {
+    private val smoothScroller: SmoothScroller by lazy {
         object : LinearSmoothScroller(requireContext()) {
             override fun getVerticalSnapPreference(): Int {
                 return SNAP_TO_START
             }
         }
     }
+
+    private val tooltip = Tooltip()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -109,7 +111,6 @@ class DoneListFragment : BaseFragment<FragmentDoneListBinding>(),
 
         if (DataStore.getIsFirstTime(requireContext())) {
             showTooltips()
-            DataStore.putFirstTime(requireContext(), false)
         }
 
         activityViewModel.setBannerAdViewVisibility(View.VISIBLE)
@@ -219,6 +220,7 @@ class DoneListFragment : BaseFragment<FragmentDoneListBinding>(),
                     viewBinding.imageViewUnlock.alpha = alpha
                     viewBinding.imageViewUnlock.scaleX = scale
                     viewBinding.imageViewUnlock.scaleY = scale
+                    viewBinding.divider.alpha = alpha
 
                     Unlock.outOfEndRange = distance * 1.25F > endRange * 0.75F
                 }
@@ -275,16 +277,18 @@ class DoneListFragment : BaseFragment<FragmentDoneListBinding>(),
 
     private fun showTooltips() {
         viewBinding.imageViewAdd.post {
-            Tooltip.showTooltip(
+            tooltip.show(
                 viewBinding.imageViewAdd,
                 getString(R.string.tooltip_000),
                 it.sephiroth.android.library.xtooltip.Tooltip.Gravity.BOTTOM
             ) {
-                Tooltip.showTooltip(
-                    viewBinding.imageViewHistory,
-                    getString(R.string.tooltip_001),
-                    it.sephiroth.android.library.xtooltip.Tooltip.Gravity.BOTTOM
-                )
+                viewBinding.imageViewHistory.post {
+                    tooltip.show(
+                        viewBinding.imageViewHistory,
+                        getString(R.string.tooltip_001),
+                        it.sephiroth.android.library.xtooltip.Tooltip.Gravity.BOTTOM
+                    )
+                }
             }
         }
     }

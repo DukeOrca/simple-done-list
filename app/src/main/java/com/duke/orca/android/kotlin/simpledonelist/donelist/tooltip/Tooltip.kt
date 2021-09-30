@@ -8,20 +8,21 @@ import com.duke.orca.android.kotlin.simpledonelist.application.Duration
 import it.sephiroth.android.library.xtooltip.ClosePolicy
 import it.sephiroth.android.library.xtooltip.Tooltip
 
-object Tooltip {
-    fun showTooltip(
+class Tooltip {
+    private var tooltip: Tooltip? = null
+
+    fun show(
         view: View,
         text: String,
         gravity: Tooltip.Gravity,
         @UiThread doOnHidden: (() -> Unit)? = null
     ) {
         val context = view.context
-
         val animation = Tooltip.Animation.DEFAULT
         val maxWidth = context.resources.getDimensionPixelSize(R.dimen.width_160dp)
         val styleId = R.style.ToolTipStyle
 
-        var tooltip: Tooltip? = Tooltip.Builder(context)
+        tooltip = Tooltip.Builder(context)
             .anchor(view, 0, 0, false)
             .arrow(true)
             .closePolicy(getClosePolicy())
@@ -41,6 +42,10 @@ object Tooltip {
         }?.doOnShown {
 
         }?.show(view, gravity, true)
+    }
+
+    fun hide() {
+        tooltip?.hide()
     }
 
     private fun getClosePolicy(): ClosePolicy {

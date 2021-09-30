@@ -37,8 +37,7 @@
     <string name="unlock_with_back_button">백 버튼으로 잠금해제</string>
     <string name="version">버전</string>
     <string name="write_review">리뷰 쓰기</string>
-
-    <string name="blind_screen_000">보안정책에 따라 홈 버튼으로 잠금 해제 할 수 없습니다.</string>
+    <string name="blind_screen_000">보안정책에 따라 홈 버튼으로 잠금 해제할 수 없습니다.</string>
     <string name="fragment_edit_done_dialog_000">오늘 한 일을 적어보세요. :)</string>
     <string name="fragment_permission_rationale_dialog_000">앱을 정상적으로 사용하기 위해서는 다음 권한을 허용해야 합니다.</string>
     <string name="notification_builder_000">다른 앱 위에 표시 권한을 허용하세요.</string>

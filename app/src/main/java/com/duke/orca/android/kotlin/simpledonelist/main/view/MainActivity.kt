@@ -18,6 +18,7 @@ import com.duke.orca.android.kotlin.simpledonelist.application.fadeOut
 import com.duke.orca.android.kotlin.simpledonelist.application.show
 import com.duke.orca.android.kotlin.simpledonelist.bottomnavigation.BottomNavigationPressedListener
 import com.duke.orca.android.kotlin.simpledonelist.bottomnavigation.BottomNavigationWatcher
+import com.duke.orca.android.kotlin.simpledonelist.datastore.DataStore
 import com.duke.orca.android.kotlin.simpledonelist.lockscreen.service.LockScreenService
 import com.duke.orca.android.kotlin.simpledonelist.main.viewmodel.MainViewModel
 import com.duke.orca.android.kotlin.simpledonelist.permission.PermissionChecker
@@ -66,6 +67,7 @@ class MainActivity : AppCompatActivity(),
     }
 
     override fun onDestroy() {
+        DataStore.putFirstTime(this, false)
         sendBroadcast(Intent(LockScreenService.Action.MAIN_ACTIVITY_DESTROYED))
         super.onDestroy()
     }
